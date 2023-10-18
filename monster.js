@@ -1,4 +1,6 @@
-class Monster extends LivingCreature {
+let LivingCreature = require('./LivingCreature')
+let random = require("./random");
+module.exports = class Monster extends LivingCreature {
     constructor(x, y) {
         super(x, y);
         this.energy = 3;
