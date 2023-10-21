@@ -6,7 +6,7 @@ app.use(express.static("."));
 app.get("/", function (req, res) {
     res.redirect("index.html");
 });
-server.listen(3000, function () {
+server.listen(3001, function () {
     console.log("App is running on port 3000");
 });
 
@@ -19,10 +19,10 @@ let NewGrassEater = require('./GreatEater.js')
 let NewRed = require('./redE.js')
 let Monster = require('./monster.js')
 let random = require("./random");
+let MegaMonster = require("./MegaMonster.js");
 
-
-let sideX = 40 
-let sideY= 40
+let sideX = 15 
+let sideY= 15
 matrix = [];
 grassArr = [];
 grassEaterArr = []
@@ -55,9 +55,10 @@ function character(quantity, char) {
 function createCanvas() {
 
     character(1, 10)
-    character(2, 3)
+    character(2, 6)
     character(3, 5)
-    character(4, 10)
+    character(4, 3)
+
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x < matrix[y].length; x++) {
 
@@ -72,6 +73,7 @@ function createCanvas() {
             } else if (matrix[y][x] == 5) {
                 monsterArr.push(new Monster(x, y))
             }
+      
 
 
         }
@@ -107,7 +109,7 @@ function startGame() {
     clearInterval(intervalID)
     intervalID = setInterval(() => {
         drawGame()
-    }, 1000);
+    }, 30);
 }
 
 

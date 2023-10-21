@@ -1,16 +1,30 @@
 let socket = io();
-let sideX = 40 
-let sideY= 40
-let side= 20
+let sideX = 15 
+let sideY= 15
+let side = 50
+
+
+let winter = document.getElementById("winter");
+
+let spring = document.getElementById("spring");
+
+let summer = document.getElementById("summer");
+
+let fall = document.getElementById("fall");
+
+
+
+function intoWinter(evt){
+    
+}
+
+winter.addEventListener("click", intoWinter);
 
 
 function setup() {
+    frameRate(5);
     createCanvas(sideX * side, sideY * side);
     background('grey');
-
-    // var gr = new Grass(1,2);
-    // var emptyCells = gr.chooseCell(0);
-    // console.log(emptyCells);
 
 }
 
@@ -29,6 +43,9 @@ function drawGame(matrix) {
                 fill("blue")
             } else if (matrix[y][x] == 5) {
                 fill("black")
+            }
+            else if (matrix[y][x] == 6) {
+                fill("#741b47")
             }
             else {
                 fill("white")
