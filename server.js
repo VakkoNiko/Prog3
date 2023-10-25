@@ -13,13 +13,13 @@ server.listen(3001, function () {
 
 
 
-let Grass = require('./class.js')
-let GrassEater = require('./FirstGrassEater.js')
-let NewGrassEater = require('./GreatEater.js')
-let NewRed = require('./redE.js')
-let Monster = require('./monster.js')
-let random = require("./random");
-let MegaMonster = require("./MegaMonster.js");
+ Grass = require('./class.js')
+ GrassEater = require('./FirstGrassEater.js')
+ NewGrassEater = require('./GreatEater.js')
+ NewRed = require('./redE.js')
+ Monster = require('./monster.js')
+ random = require("./random");
+ MegaMonster = require("./MegaMonster.js");
 
 let sideX = 15 
 let sideY= 15
@@ -29,6 +29,7 @@ grassEaterArr = []
 newEaterArr = []
 newRedArr = []
 monsterArr = []
+megaMonsterArr = []
 
 
 for (let i = 0; i < sideY; i++) {
@@ -58,6 +59,8 @@ function createCanvas() {
     character(2, 6)
     character(3, 5)
     character(4, 3)
+    character(5, 8)
+    character(6, 20)
 
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x < matrix[y].length; x++) {
@@ -72,12 +75,10 @@ function createCanvas() {
                 newRedArr.push(new NewRed(x, y))
             } else if (matrix[y][x] == 5) {
                 monsterArr.push(new Monster(x, y))
+            } else if (matrix[y][x] == 6) {
+                megaMonsterArr.push(new MegaMonster(x, y))
             }
-      
-
-
         }
-
     }
 }
 
@@ -86,6 +87,8 @@ function drawGame() {
         grassArr[i].mul();
 
     }
+
+
     for (let i in grassEaterArr) {
         grassEaterArr[i].eat();
     }
@@ -97,6 +100,9 @@ function drawGame() {
     }
     for (let i in monsterArr) {
         monsterArr[i].eat();
+    }
+    for (let i in megaMonsterArr) {
+        megaMonsterArr[i].eat();
     }
     io.emit('matrix', matrix)
 

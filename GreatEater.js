@@ -3,7 +3,7 @@ let random = require("./random");
 module.exports = class NewGrassEater extends LivingCreature {
     constructor(x, y) {
         super(x, y);
-        this.energy = 3;
+        this.energy = 5;
     }
 
     getNewCoordinates() {
@@ -29,7 +29,7 @@ module.exports = class NewGrassEater extends LivingCreature {
     mul() {
         var found = this.chooseCell(0)
         var newCell = random(found);
-        if (newCell && this.energy >= 15) {
+        if (newCell && this.energy >= 10) {
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = 4;
@@ -44,7 +44,7 @@ module.exports = class NewGrassEater extends LivingCreature {
         let newCell = random(found);
 
         if (newCell) {
-            this.energy += 10
+            this.energy += 15
             let newX = newCell[0];
             let newY = newCell[1];
             matrix[newY][newX] = 4;
@@ -60,7 +60,7 @@ module.exports = class NewGrassEater extends LivingCreature {
             this.y = newY;
             // this.energy++;
 
-            if (this.energy <= 10) {
+            if (this.energy <= 15) {
                 this.mul();
             }
         } else {

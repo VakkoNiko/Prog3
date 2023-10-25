@@ -45,7 +45,7 @@ module.exports = class GrassEater extends LivingCreature {
         let newCell = random(found);
 
         if (newCell) {
-            this.energy += 4
+            this.energy += 5
             let newX = newCell[0];
             let newY = newCell[1];
             matrix[newY][newX] = 2;
@@ -61,7 +61,7 @@ module.exports = class GrassEater extends LivingCreature {
             this.y = newY;
             // this.energy++;
 
-            if (this.energy >= 80) {
+            if (this.energy >= 20) {
                 this.mul();
             } else if (this.energy >= 200) {
                 this.die()
@@ -85,7 +85,7 @@ module.exports = class GrassEater extends LivingCreature {
             this.x = newX;
             this.y = newY;
         }
-        this.energy -= 4;
+        this.energy -= 2;
 
         if (this.energy <= 0) {
             this.die();

@@ -55,7 +55,7 @@ module.exports = class NewRed extends LivingCreature {
         let newCell = random(found);
 
         if (newCell) {
-            this.energy += 40
+            this.energy += 20
             let newX = newCell[0];
             let newY = newCell[1];
             matrix[newY][newX] = 5;
@@ -71,8 +71,8 @@ module.exports = class NewRed extends LivingCreature {
             this.y = newY;
             // this.energy++;
 
-            if (this.energy >= 200) {
-                this.energy -= 5
+            if (this.energy >= 150) {
+                this.energy -= 4
             }
         } else {
             this.move();

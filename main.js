@@ -12,14 +12,26 @@ let summer = document.getElementById("summer");
 
 let fall = document.getElementById("fall");
 
+var winterState = false
+
+
+var springState = false
 
 
 function intoWinter(evt){
-    
+     winterState = true;
+     springState = false;
 }
 
 winter.addEventListener("click", intoWinter);
 
+
+function intoSpring(evt){
+    springState = true;
+    winterState = false;
+}
+
+spring.addEventListener("click", intoSpring);
 
 function setup() {
     frameRate(5);
@@ -33,9 +45,18 @@ function drawGame(matrix) {
 
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x < matrix.length; x++) {
-            if (matrix[y][x] == 1) {
+            if (matrix[y][x] == 1 && winterState == false) {
                 fill("green")
-            } else if (matrix[y][x] == 2) {
+            }  else if (matrix[y][x] == 1 && winterState == true) {
+                fill("#330000")
+            }
+
+            else if (matrix[y][x] == 1 &&  springState == true) {
+                fill("green")
+            }
+
+
+            else if (matrix[y][x] == 2) {
                 fill("yellow")
             } else if (matrix[y][x] == 3) {
                 fill("red")
