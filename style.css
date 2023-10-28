@@ -59,3 +59,55 @@ button{
     display: flex;
     margin-left: 10px;
 }
+
+#button_for_die{
+    width: 200px;
+    height: 45px;
+    border-radius: 30px;
+    display: block; 
+    margin-bottom: 30px;
+    background-color: #cc0000;
+    color: white;
+    font-weight: 700;
+}
+
+
+#button_for_live{
+    width: 200px;
+    height: 45px;
+    border-radius: 30px;
+    display: block; 
+    margin-bottom: 30px;
+    background-color: #38761d;
+    color: white;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+#X2{
+    width: 100px;
+    height: 45px;
+    border-radius: 30px;
+    display: block; 
+    margin-bottom: 30px;
+    background-color: #e5e5e5;
+    color: black;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+#MinusX2{
+    width: 100px;
+    height: 45px;
+    border-radius: 30px;
+    display: block; 
+    margin-bottom: 30px;
+    background-color: #cc0000;
+    color: black;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.action_buttons{
+    display: flex;
+}

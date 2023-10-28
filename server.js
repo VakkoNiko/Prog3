@@ -30,7 +30,9 @@ newEaterArr = []
 newRedArr = []
 monsterArr = []
 megaMonsterArr = []
-
+endGame = false;
+nuling = false
+minusNuling = false
 
 for (let i = 0; i < sideY; i++) {
     matrix.push([]);
@@ -53,6 +55,7 @@ function character(quantity, char) {
 
 
 
+
 function createCanvas() {
 
     character(1, 10)
@@ -61,7 +64,10 @@ function createCanvas() {
     character(4, 3)
     character(5, 8)
     character(6, 20)
+  
 
+
+ 
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x < matrix[y].length; x++) {
 
@@ -83,44 +89,70 @@ function createCanvas() {
 }
 
 function drawGame() {
-    for (let i in grassArr) {
-        grassArr[i].mul();
 
+    if(!endGame){
+        for (let i in grassArr) {
+            grassArr[i].mul();
+    
+        }
+        for (let i in grassEaterArr) {
+            grassEaterArr[i].eat();
+        }
+        for (let i in newEaterArr) {
+            newEaterArr[i].eat();
+        }
+        for (let i in newRedArr) {
+            newRedArr[i].eat();
+        }
+        for (let i in monsterArr) {
+            monsterArr[i].eat();
+        }
+        for (let i in megaMonsterArr) {
+            megaMonsterArr[i].eat();
+        }
+        io.emit('matrix', matrix)
+    
     }
-
-
-    for (let i in grassEaterArr) {
-        grassEaterArr[i].eat();
-    }
-    for (let i in newEaterArr) {
-        newEaterArr[i].eat();
-    }
-    for (let i in newRedArr) {
-        newRedArr[i].eat();
-    }
-    for (let i in monsterArr) {
-        monsterArr[i].eat();
-    }
-    for (let i in megaMonsterArr) {
-        megaMonsterArr[i].eat();
-    }
-    io.emit('matrix', matrix)
-
+   
 }
 
 let intervalID;
 createCanvas()
 
 function startGame() {
+    let spped = 0;
+
+    if(!nuling){
+        spped = 5;
+    } else {
+        spped = 30;
+    }
+
     clearInterval(intervalID)
     intervalID = setInterval(() => {
         drawGame()
-    }, 30);
+    }, spped);
 }
 
 
 
 io.on('connection', function (socket) {
     socket.emit('matrix', matrix)
+    socket.on("emd game", actionModeAction)
+    socket.on("nulling", NulingProcces)
     startGame()
+  
 })
+
+
+function actionModeAction(actionState){
+    endGame = actionState;
+}
+
+
+function NulingProcces(nullX2){
+    nuling = nullX2;
+    clearInterval(intervalID)
+    startGame()
+}
+
